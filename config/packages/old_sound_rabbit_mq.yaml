@@ -1,0 +1,25 @@
+
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'localhost'
+            port:     5672
+            user:     'guest'
+            password: 'guest'
+            vhost:    '/'
+            lazy:     false
+            connection_timeout: 3
+            read_write_timeout: 3
+    producers:
+        emailing:
+            connection: default
+            exchange_options:
+                name: item
+                type: direct
+    consumers:
+        emailing:
+            connection:       default
+            exchange_options: {name: 'item', type: direct}
+            queue_options:    {name: 'item'}
+            callback:         populate_service
