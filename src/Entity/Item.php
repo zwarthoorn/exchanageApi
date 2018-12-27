@@ -15,7 +15,6 @@ class Item
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -37,7 +36,7 @@ class Item
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\PriceNow", inversedBy="item", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $price_new;
 
@@ -54,6 +53,12 @@ class Item
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId(int $id): self
+    {
+      $this->id = $id;
+
+      return $this;
     }
 
     public function getName(): ?string

@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
+
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\PriceNowRepository")
+ * @ApiFilter(RangeFilter::class, properties={"buy_average","PriceDifference"})
  */
 class PriceNow
 {

@@ -1,0 +1,12 @@
+framework:
+    serializer: ~
+    messenger:
+        serializer:
+            id: messenger.transport.symfony_serializer
+        transports:
+            # Uncomment the following line to enable a transport named "amqp"
+            amqp: enqueue://default
+
+        routing:
+            # Route your messages to the transports
+             'App\Message\SmsNotification': amqp
